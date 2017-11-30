@@ -14,20 +14,20 @@ def get_user_password():
     return password_vk
 
 
-def get_online_friends(login, password):
+def get_online_friends(accaunt_login, accaunt_password):
     session = vk.AuthSession(
         app_id=APP_ID,
-        user_login=login,
-        user_password=password,
+        user_login=accaunt_login,
+        user_password=accaunt_password,
     )
     api = vk.API(session)
     my_friend_status = api.friends.get(fields='online')
     return my_friend_status
 
 
-def output_friends_to_console(friends_online):
+def output_friends_to_console(friends_online_vk):
     print('Friends online: ')
-    for friend in friends_online:
+    for friend in friends_online_vk:
         if friend['online'] == 1:
             print(friend['first_name'], friend['last_name'])
 
