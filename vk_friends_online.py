@@ -19,16 +19,15 @@ def get_online_friends(accaunt_login, accaunt_password):
         app_id=APP_ID,
         user_login=accaunt_login,
         user_password=accaunt_password,
+        scope='friends'
     )
     api = vk.API(session)
-    my_friend_status = api.friends.get(fields='online')
-    return my_friend_status
+    return api.getProfiles(user_ids=api.friends.getOnline())
 
 
 def output_friends_to_console(friends_online_vk):
     print('Friends online: ')
     for friend in friends_online_vk:
-        if friend['online'] == 1:
             print(friend['first_name'], friend['last_name'])
 
 
